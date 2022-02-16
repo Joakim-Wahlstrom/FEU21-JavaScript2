@@ -18,6 +18,8 @@ const io = socket(server)
 io.on('connection', socket => {
   // console.log('New user connected ', socket.id)
 
-  socket.emit('message', 'Weclome to the chat!')
+  socket.on('user', userName => {
+    socket.broadcast.emit('user', `${userName} has joined the chat`)
+  })
 
 })
