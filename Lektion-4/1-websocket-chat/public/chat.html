@@ -8,38 +8,38 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  
-  <div class="chat-card">
-    <header class="chat-header">
-      <p id="me">Joakim</p>
-      <a href="index.html" class="btn btn-primary">Logout</a>
-    </header>
+  <div class="container">
+    <div class="chat-card">
+      <header class="chat-header">
+        <p id="me">Joakim</p>
+        <a href="index.html" class="btn btn-primary">Logout</a>
+      </header>
 
-    <div class="chat">
-      <div class="chat-window">
-        <div class="messages">
-  
-          <div class="single-message">
-            <p class="single-message_name">Namnet på användaren</p>
-            <p class="single-message_msg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, ipsam?</p>
+      <div class="chat">
+        <div class="chat-window">
+          <div class="messages">
+    
+            <!-- <div class="single-message">
+              <p class="single-message_name">Namnet på användaren</p>
+              <p class="single-message_msg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, ipsam?</p>
+            </div>
+            <div class="single-message right">
+              <p class="single-message_name">Namnet på användaren</p>
+              <p class="single-message_msg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, ipsam?</p>
+            </div> -->
+    
           </div>
-          <div class="single-message right">
-            <p class="single-message_name">Namnet på användaren</p>
-            <p class="single-message_msg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit, ipsam?</p>
-          </div>
-  
         </div>
-        <div id="feedback">Emil skriver...</div>
+        <form id="chatForm" class="chat-form">
+          <div id="feedback" class="d-none"></div>
+          <div class="input-group">
+            <input type="text" id="chatMessage" class="form-control" placeholder="Enter a message">
+            <button id="send" class="btn btn-primary btn-block">Send</button>
+          </div>
+        </form>
       </div>
-      <form id="chatForm" class="chat-form">
-        <input type="text" id="chatMessage" class="form-control" placeholder="Enter a message">
-        <button id="send" class="btn btn-primary btn-block">Send</button>
-      </form>
     </div>
-
-
   </div>
-
 
 
   <script src="/socket.io/socket.io.js"></script>
