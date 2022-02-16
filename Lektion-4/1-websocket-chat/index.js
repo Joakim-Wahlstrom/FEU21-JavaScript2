@@ -11,3 +11,13 @@ app.use(express.static(path.join(__dirname, 'public')))
 const PORT = process.env.PORT || 5000;
 
 server.listen(PORT, () => console.log('Server running on http://localhost:' + PORT));
+
+
+const io = socket(server)
+
+io.on('connection', socket => {
+  // console.log('New user connected ', socket.id)
+
+  socket.emit('message', 'Weclome to the chat!')
+
+})
