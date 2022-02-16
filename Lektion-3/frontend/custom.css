@@ -18,6 +18,11 @@
   left: 50%;
   transform: translateX(-50%);
   bottom: 3rem;
+  aspect-ratio: 1;
+}
+
+.fa-trash {
+  cursor: pointer;
 }
 
 .animate {
