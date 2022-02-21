@@ -2,10 +2,10 @@ const router = require('express').Router();
 const productModel = require('../models/products/productModel');
 
 // Get all products
-// router.get('/',)
+router.get('/', productModel.getProducts);
 
 //Get one product by id
-// router.get('/:id')
+router.get('/:id', productModel.getProductById);
 
 //create new product
 router.post('/', productModel.createProduct);
@@ -14,8 +14,7 @@ router.post('/', productModel.createProduct);
 // router.patch('/:id')
 
 //Delete product
-// router.delete('/:id')
-
+router.delete('/:id', productModel.deleteProduct);
 
 
 module.exports = router;
