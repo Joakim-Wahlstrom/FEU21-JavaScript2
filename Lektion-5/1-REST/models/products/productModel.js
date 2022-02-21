@@ -54,7 +54,6 @@ exports.getProductById = (req, res) => {
 }
 
 
-
 exports.createProduct = (req, res) => {
 
   Product.exists({ name: req.body.name }, (err, result) => {

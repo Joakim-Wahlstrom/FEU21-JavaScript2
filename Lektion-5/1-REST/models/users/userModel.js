@@ -1,6 +1,6 @@
 const User = require('./userSchema');
 const bcrypt = require('bcryptjs');
-
+const auth = require('../../authentication/auth');
 
 exports.registerUser = (req, res) => {
 
@@ -45,12 +45,12 @@ exports.registerUser = (req, res) => {
         email:          req.body.email,
         passwordHash:   hash
       })
-      .then(() => {
+      .then(user => {
         res.status(201).json({
           statusCode: 201,
           status: true,
           message: 'User was created successfully',
-          token: 'test123'
+          token: auth.generateToken(user)
         })
       })
       .catch(err => {
@@ -113,7 +113,7 @@ exports.loginUserWithEmailAndPassword = (req, res) => {
         statusCode: 200,
         status: true,
         message: 'Authentication was successful',
-        token: 'test123'
+        token: auth.generateToken(user)
       })
 
     })
