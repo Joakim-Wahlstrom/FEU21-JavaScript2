@@ -1,5 +1,5 @@
 <template>
-  <form class="login-form">
+  <form class="login-form" @submit.prevent="handleSubmit">
     <h1 class="title">LOGIN</h1>
     <div class="input-group">
       <label for="name">Namn: </label>
@@ -18,11 +18,32 @@
 
 <script>
 export default {
+  props: ['user'],
   data() {
     return {
       name: '',
       password: '',
       error: ''
+    }
+  },
+  methods: {
+    handleSubmit() {
+      if(this.user) {
+        this.error = 'Du måste logga ut först'
+        return
+      }
+
+      if(this.name.trim() === '' || this.password.trim() === '') {
+        this.error = 'Du måste fylla i alla fält'
+        return
+      }
+
+      this.error = ''
+      // this.user = { name: this.name, password: this.password }
+      this.$emit('login', { name: this.name, password: this.password })
+      this.name = ''
+      this.password = ''
+
     }
   }
 }
