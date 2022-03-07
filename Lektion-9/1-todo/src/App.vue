@@ -9,7 +9,7 @@
 
 <script>
 import axios from 'axios'
-import { v4 as uuidv4 } from 'uuid'
+// import { v4 as uuidv4 } from 'uuid'
 
 import AddTodoForm from './components/AddTodoForm.vue'
 import TodoList from './components/Todos/TodoList.vue'
@@ -29,7 +29,7 @@ export default {
       // ],
       todos: [],
       sort: '',
-      apiURL: 'http://localhost:8080/api/todos'
+      apiURL: 'http://localhost:8080/api/todos/'
     }
   },
   methods: {
@@ -51,19 +51,41 @@ export default {
       const res = await axios.get(this.apiURL)
       this.todos = res.data
     },
-    add(title) {
-      const todo = {
-        _id: uuidv4(),
-        title,
-        completed: false
+    async add(title) {
+      // const todo = {
+      //   _id: uuidv4(),
+      //   title,
+      //   completed: false
+      // }
+      // this.todos.push(todo)
+      try {
+        const res = await axios.post(this.apiURL, { title })
+        if(res.status === 201) {
+          this.todos.push(res.data)
+        }
+      } 
+      catch (err) {
+        console.log(err)
       }
-      this.todos.push(todo)
     },
-    deleteTodo(id) {
-      this.todos = this.todos.filter(todo => todo._id !== id)
+    deleteTodo(_todo) {
+
+      axios.delete(this.apiURL + _todo._id)
+        .then(res => {
+          if(res.status === 200) {
+            this.todos = this.todos.filter(todo => todo._id !== res.data.id)
+          }
+        })
+        .catch(err => console.log(err)) 
+
+      // this.todos = this.todos.filter(todo => todo._id !== id)
     },
-    toggleComplete(todo) {
-      todo.completed = !todo.completed
+    async toggleComplete(todo) {
+      const res = await axios.patch(this.apiURL + todo._id, { completed: !todo.completed})
+      // console.log(res)
+      if(res.status === 200) {
+        todo.completed = !todo.completed
+      }
     }
   },
   created() {

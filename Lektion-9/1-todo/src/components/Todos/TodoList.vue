@@ -2,8 +2,8 @@
   <div class="py-3" v-if="todos.length">
     <TransitionGroup name="fade-slide">
       <div v-for="todo in todos" :key="todo._id">
-        <TodoListItem v-if="value === ''" :todo="todo" @click="$emit('toggle-complete', todo)" @delete-todo="$emit('delete-todo', todo._id)" />
-        <TodoListItem v-else-if="todo.completed === value" :todo="todo" @click="$emit('toggle-complete', todo)" @delete-todo="$emit('delete-todo', todo._id)" />
+        <TodoListItem v-if="value === ''" :todo="todo" @toggle-complete="$emit('toggle-complete', todo)" @delete-todo="$emit('delete-todo', todo)" />
+        <TodoListItem v-else-if="todo.completed === value" :todo="todo" @toggle-complete="$emit('toggle-complete', todo)" @delete-todo="$emit('delete-todo', todo)" />
       </div>
     </TransitionGroup>
     <!-- <TodoListItem v-for="todo in todos" :key="todo._id" :todo="todo" @click="$emit('toggle-complete', todo)" @delete-todo="$emit('delete-todo', todo._id)" /> -->
