@@ -1,10 +1,9 @@
 <template>
-  <div>
-    <AddTodoForm @add-todo="add" @sort="sortTodos" />
-    <div class="container">
-      <TodoList :value="sort" :todos="todos" @delete-todo="deleteTodo" @toggle-complete="toggleComplete" />
-    </div>
+  <AddTodoForm @add-todo="add" @sort="sortTodos" />
+  <div class="container">
+    <TodoList :value="sort" :todos="todos" @delete-todo="deleteTodo" @toggle-complete="toggleComplete" />
   </div>
+  <ErrorModal v-if="showModal" @close-modal="showModal = false" />
 </template>
 
 <script>
@@ -13,10 +12,12 @@ import axios from 'axios'
 
 import AddTodoForm from './components/AddTodoForm.vue'
 import TodoList from './components/Todos/TodoList.vue'
+import ErrorModal from './components/ErrorModal.vue'
 export default {
   components: { 
     AddTodoForm,
-    TodoList 
+    TodoList,
+    ErrorModal 
   },
   data() {
     return {
@@ -29,7 +30,8 @@ export default {
       // ],
       todos: [],
       sort: '',
-      apiURL: 'http://localhost:8080/api/todos/'
+      apiURL: 'http://localhost:8080/api/todos/',
+      showModal: false
     }
   },
   methods: {
@@ -69,14 +71,20 @@ export default {
       }
     },
     deleteTodo(_todo) {
+      
+      if(_todo.completed) {
+        axios.delete(this.apiURL + _todo._id)
+          .then(res => {
+            if(res.status === 200) {
+              this.todos = this.todos.filter(todo => todo._id !== res.data.id)
+            }
+          })
+          .catch(err => console.log(err)) 
+      }
+      else {
+        this.showModal = true
+      }
 
-      axios.delete(this.apiURL + _todo._id)
-        .then(res => {
-          if(res.status === 200) {
-            this.todos = this.todos.filter(todo => todo._id !== res.data.id)
-          }
-        })
-        .catch(err => console.log(err)) 
 
       // this.todos = this.todos.filter(todo => todo._id !== id)
     },
