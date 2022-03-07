@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import { v4 as uuidv4 } from 'uuid'
 
 import AddTodoForm from './components/AddTodoForm.vue'
@@ -19,14 +20,16 @@ export default {
   },
   data() {
     return {
-      todos: [
-        { _id: '1', title: 'Todo Item One', completed: false },
-        { _id: '2', title: 'Todo Item Two', completed: true },
-        { _id: '3', title: 'Todo Item Three', completed: false },
-        { _id: '4', title: 'Todo Item Four', completed: true },
-        { _id: '5', title: 'Todo Item Five', completed: false },
-      ],
-      sort: ''
+      // todos: [
+      //   { _id: '1', title: 'Todo Item One', completed: false },
+      //   { _id: '2', title: 'Todo Item Two', completed: true },
+      //   { _id: '3', title: 'Todo Item Three', completed: false },
+      //   { _id: '4', title: 'Todo Item Four', completed: true },
+      //   { _id: '5', title: 'Todo Item Five', completed: false },
+      // ],
+      todos: [],
+      sort: '',
+      apiURL: 'http://localhost:8080/api/todos'
     }
   },
   methods: {
@@ -44,6 +47,10 @@ export default {
           this.sort = ''
       }
     },
+    async fetchTodos() {
+      const res = await axios.get(this.apiURL)
+      this.todos = res.data
+    },
     add(title) {
       const todo = {
         _id: uuidv4(),
@@ -58,6 +65,9 @@ export default {
     toggleComplete(todo) {
       todo.completed = !todo.completed
     }
+  },
+  created() {
+    this.fetchTodos()
   }
 }
 </script>
