@@ -1,0 +1,26 @@
+{
+  "posts": [
+    {
+      "id": "1sadfgf",
+      "title": "Blog post 1",
+      "body": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis fugiat amet quia, iusto expedita asperiores nam, eum vero ducimus, error iste incidunt cumque! Odio quidem dolorem optio recusandae repudiandae soluta?",
+      "author": "Joakim",
+      "categories": [
+        "Travel",
+        "Food"
+      ],
+      "imgUrl": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1381&q=80"
+    },
+    {
+      "id": "asdsaff",
+      "title": "Blog post 2",
+      "body": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis fugiat amet quia, iusto expedita asperiores nam, eum vero ducimus, error iste incidunt cumque! Odio quidem dolorem optio recusandae repudiandae soluta?",
+      "author": "Hans",
+      "categories": [
+        "Frontend",
+        "Computers"
+      ],
+      "imgUrl": "https://images.unsplash.com/photo-1640622302588-aefc0da2b58f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
+    }
+  ]
+}
