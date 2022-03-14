@@ -2,12 +2,18 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import CreateView from '../views/CreateView.vue'
 import PostDetails from '../views/PostDetails.vue'
+import SearchResults from '../views/SearchResults.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: SearchResults
   },
   {
     path: '/details/:id',

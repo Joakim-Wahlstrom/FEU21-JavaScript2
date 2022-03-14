@@ -7,7 +7,7 @@
       <h2 class="content_title">{{ post.title }}</h2>
       <div class="content_info">
         <ul class="content_list">
-          <li v-for="(cat, index) in post.categories" :key="index">{{ cat }}</li>
+          <li v-for="(cat, index) in post.categories" :key="index" @click="search(cat)">{{ cat }}</li>
         </ul>
         <p>Author: {{ post.author }}</p>
       </div>
@@ -19,7 +19,12 @@
 
 <script>
 export default {
-  props: ['post']
+  props: ['post'],
+  methods: {
+    search(query) {
+      this.$router.push({ name: 'home', query: { searchQuery: query } })
+    }
+  }
 }
 </script>
 
@@ -28,6 +33,7 @@ export default {
     display: flex;
     background: #fff;
     border-bottom: 1px solid #dbdbdb;
+    /* margin-bottom: 1rem; */
   }
   .post:nth-child(even) {
     flex-direction: row-reverse;
@@ -51,7 +57,7 @@ export default {
     font-size: 1.8rem;
     margin-bottom: 1rem;
   }
-  .content_info,
+  /* .content_info,
   .content_list {
     display: flex;
     justify-content: space-between;
@@ -68,7 +74,7 @@ export default {
     color: #fff;
     padding: .2em 1em;
     border-radius: 100vh;
-  }
+  } */
   .bottom-right {
     position: absolute;
     bottom: 1.5rem;

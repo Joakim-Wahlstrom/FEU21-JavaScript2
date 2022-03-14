@@ -1,7 +1,7 @@
 <template>
   <Navbar />
   <div class="container">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
@@ -55,5 +55,24 @@ export default {
   }
   .form-control:focus {
     outline: 1px solid #6d6d6d;
+  }
+    .content_info,
+  .content_list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: .8rem;
+  }
+  .content_info {
+    margin-bottom: 2rem;
+  }
+  .content_list li {
+    list-style: none;
+    margin-right: 1rem;
+    background: #333;
+    color: #fff;
+    padding: .2em 1em;
+    border-radius: 100vh;
+    cursor: pointer;
   }
 </style>

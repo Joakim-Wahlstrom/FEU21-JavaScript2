@@ -10,7 +10,6 @@ import BlogPost from '../components/BlogPost.vue'
 export default {
   components: {
     BlogPost
-
   },
   data() {
     return {
@@ -19,22 +18,13 @@ export default {
     }
   },
   methods: {
-    // async getPosts() {
-    //   const res = await axios.get('http://localhost:3000/posts')
-    //   this.posts = res.data
-    // }
     async getPosts() {
-      if(this.$route.query.searchQuery) {
-        if(this.prevQuery !== this.$route.query.searchQuery) {
-          const res = await axios.get(`http://localhost:3000/posts?q=${this.$route.query.searchQuery}`)
-          if(res.status === 200) {
-            this.posts = res.data
-            this.prevQuery = this.$route.query.searchQuery
-          }
+      if(this.prevQuery !== this.$route.query.searchQuery) {
+        const res = await axios.get(`http://localhost:3000/posts?q=${this.$route.query.searchQuery}`)
+        if(res.status === 200) {
+          this.posts = res.data
+          this.prevQuery = this.$route.query.searchQuery
         }
-      } else {
-        const res = await axios.get('http://localhost:3000/posts')
-        this.posts = res.data
       }
     }
   },
