@@ -21,6 +21,17 @@
         "Computers"
       ],
       "imgUrl": "https://images.unsplash.com/photo-1640622302588-aefc0da2b58f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
+    },
+    {
+      "title": "En häst",
+      "body": "det här är en liten historia om en häst.. en snel hest",
+      "imgUrl": "https://images.unsplash.com/photo-1647164925200-54d1939ada1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
+      "categories": [
+        "hästar",
+        "storytime"
+      ],
+      "author": "Tommy",
+      "id": "xZvR32j"
     }
   ]
 }

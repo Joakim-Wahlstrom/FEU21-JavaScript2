@@ -12,7 +12,7 @@
         <p>Author: {{ post.author }}</p>
       </div>
       <p class="content_body">{{ post.body.slice(0,100) }}...</p>
-      <button class="btn btn-primary bottom-right">Read more</button>
+      <router-link :to="'/details/' + post.id"><button class="btn btn-primary bottom-right">Read more</button></router-link>
     </div>
   </div>
 </template>
