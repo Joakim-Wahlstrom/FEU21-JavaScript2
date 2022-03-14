@@ -4,7 +4,7 @@
     <input type="search" class="form-control" placeholder="Search" >
     <ul class="nav-links">
       <li><router-link to="/" class="link">Blogs</router-link></li>
-      <li><button class="btn btn-primary btn-large">Create new</button></li>
+      <li><router-link to="/create"><button class="btn btn-primary btn-large">Create new</button></router-link></li>
     </ul>
   </nav>
 </template>
@@ -21,6 +21,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding-block: 2rem;
+    margin-bottom: 3rem;
   }
   .brand {
     font-size: 2rem;
