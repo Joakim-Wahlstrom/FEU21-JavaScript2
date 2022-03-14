@@ -38,13 +38,13 @@ export default {
     font-weight: 700;
     margin-right: 1rem;
   }
-  .form-control {
+  /* .form-control {
     font-size: 1rem;
     padding: .5em;
     border: 1px solid #cecece;
     border-radius: .5em;
-  }
-  .form-control:focus {
+  } */
+  /* .form-control:focus {
     outline: 1px solid #6d6d6d;
-  }
+  } */
 </style>

@@ -43,4 +43,13 @@ export default {
   .btn-large {
     font-size: 1rem;
   }
+  .form-control {
+    font-size: 1rem;
+    padding: .5em;
+    border: 1px solid #cecece;
+    border-radius: .5em;
+  }
+  .form-control:focus {
+    outline: 1px solid #6d6d6d;
+  }
 </style>
