@@ -21,4 +21,13 @@ export default {
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
+  .btn {
+    margin: 1rem 0 0 1rem;
+    padding: .5em 1em;
+    border-radius: .8em;
+    border: 0;
+    background: #201d1d;
+    color: #fff;
+    cursor: pointer;
+  }
 </style>
