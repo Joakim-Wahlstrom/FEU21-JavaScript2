@@ -25,12 +25,13 @@
             <router-link class="nav-link" active-class="active" aria-current="page" to="/blog">Blog</router-link>
           </li>
         </ul>
-        <form class="d-flex input-group w-auto">
+        <form class="d-flex input-group w-auto" @submit.prevent="search(searchValue)">
           <input
             type="search"
             class="form-control"
             placeholder="Type query"
             aria-label="Search"
+            v-model="searchValue"
           />
           <button
             class="btn"
@@ -46,8 +47,20 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
-  name: 'PrimaryNavigation'
+  name: 'PrimaryNavigation',
+  data() {
+    return {
+      searchValue: ''
+    }
+  },
+  methods: {
+    ...mapActions(['search']),
+    handleSubmit() {
+      this.search(this.searchValue)
+    }
+  }
 }
 </script>
 
