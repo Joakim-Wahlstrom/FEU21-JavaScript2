@@ -13,13 +13,16 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   props: ['id'],
   methods: {
-    ...mapActions(['getPost'])
+    ...mapActions(['getPost', 'clearPost'])
   },
   created() {
     this.getPost(this.id)
   },
   computed: {
     ...mapGetters(['post'])
+  },
+  unmounted() {
+    this.clearPost()
   }
 }
 </script>
