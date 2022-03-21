@@ -94,10 +94,13 @@ const deleteTodo = async todo => {
 }
 
 const createTodoElement = (todo, parent, placement, isNew) => {
+  let title = todo.title.replace(/</g, "&lt;").replace(/>/g, "&gt;")
+  .replace('<', "&lt;").replace('>', "&gt;")
+  // let title = todo.title.replace(/</g, "\<").replace(/>/g, "\>")
   parent.insertAdjacentHTML(placement ,`
   <div class="border-bottom ${isNew ? 'animate' : ''}" id="todo_${todo._id}">
     <div class="container d-flex justify-content-between align-items-center px-5 py-2">
-      <p id="title_${todo._id}" class="h5 m-0 title ${todo.completed ? 'complete' : ''}">${todo.title}</p>
+      <p id="title_${todo._id}" class="h5 m-0 title ${todo.completed ? 'complete' : ''}">${title}</p>
       <i class="fa-solid fa-trash text-danger" id="delete_${todo._id}"></i>
     </div>
   </div>`)
