@@ -63,7 +63,7 @@
           </div>
         </div>
         <!-- Avatar -->
-        <div class="dropdown">
+        <div class="dropdown" v-if="loggedIn">
           <a
             class="text-reset dropdown-toggle"
             href="#"
@@ -79,16 +79,14 @@
             aria-labelledby="navbarDropdownMenuAvatar"
           >
             <li>
-              <a class="dropdown-item" href="#">My profile</a>
+              <router-link class="dropdown-item" to="/myprofile">My profile</router-link>
             </li>
             <li>
-              <a class="dropdown-item" href="#">Settings</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Logout</a>
+              <router-link class="dropdown-item" @click="logout" to="/login">Logout</router-link>
             </li>
           </ul>
         </div>
+        <router-link to="/login" class="nav-link text-dark" v-else>Login</router-link>
       </div>
       <!-- Right elements -->
     </div>
@@ -98,13 +96,16 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import ShoppingCart from './shoppingCart/ShoppingCart.vue'
 export default {
   components: { ShoppingCart },
   name: 'PrimaryNavigation',
   computed: {
-    ...mapGetters(['cartItemCount'])
+    ...mapGetters(['cartItemCount', 'loggedIn'])
+  },
+  methods: {
+    ...mapActions(['logout'])
   }
 }
 </script>
