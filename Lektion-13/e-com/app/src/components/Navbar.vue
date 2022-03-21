@@ -53,13 +53,13 @@
             aria-expanded="false"
           >
             <i class="fas fa-shopping-cart"></i>
-            <span class="badge rounded-pill badge-notification bg-danger">1</span>
+            <span v-if="cartItemCount" class="badge rounded-pill badge-notification bg-danger">{{cartItemCount}}</span>
           </a>
           <div
-            class="dropdown-menu dropdown-menu-end"
+            class="dropdown-menu dropdown-menu-end shopping-cart"
             aria-labelledby="navbarDropdownMenuLink"
           >
-            SHOPPINGCART
+            <ShoppingCart />
           </div>
         </div>
         <!-- Avatar -->
@@ -98,11 +98,19 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import ShoppingCart from './shoppingCart/ShoppingCart.vue'
 export default {
-  name: 'PrimaryNavigation'
+  components: { ShoppingCart },
+  name: 'PrimaryNavigation',
+  computed: {
+    ...mapGetters(['cartItemCount'])
+  }
 }
 </script>
 
-<style>
-
+<style scoped>
+  .shopping-cart {
+    min-width: 450px;
+  }
 </style>
