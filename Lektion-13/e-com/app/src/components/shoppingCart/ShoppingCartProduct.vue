@@ -11,7 +11,7 @@
     </div>
     <div>
       <div class="btn-group btn-group-sm me-2">
-        <button class="btn btn-dark ">-</button>
+        <button class="btn btn-dark" @click.stop="decrement">-</button>
         <button class="btn btn-dark">+</button>
       </div>
       <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
@@ -21,7 +21,13 @@
 
 <script>
 export default {
-  props: ['item']
+  props: ['item'],
+  methods: {
+    decrement() {
+      // e.stopPropagation()
+      console.log('minus')
+    }
+  }
 }
 </script>
 

@@ -6,6 +6,18 @@ import LoginView from '../views/LoginView.vue'
 import MyProfile from '../views/MyProfile.vue'
 import store from '../store/index'
 
+const requireAuth = (to, from, next) => {
+  let loggedIn = store.getters.loggedIn
+  if(!loggedIn) next({ name: 'login' , query: { redirect: to.fullPath }})
+  else next()
+}
+
+const requireNoAuth = (to, from, next) => {
+  let loggedIn = store.getters.loggedIn
+  if(loggedIn) next({ name: 'home' })
+  else next()
+}
+
 const routes = [
   {
     path: '/',
@@ -16,12 +28,14 @@ const routes = [
     path: '/myprofile',
     name: 'myProfile',
     component: MyProfile,
-    meta: { authorize: true }
+    // meta: { authorize: true }
+    beforeEnter: requireAuth
   },
   {
     path: '/login',
     name: 'login',
-    component: LoginView
+    component: LoginView,
+    beforeEnter: requireNoAuth
   },
   {
     path: '/products',
@@ -50,19 +64,18 @@ const router = createRouter({
 })
 
 
-router.beforeEach((to, from, next) => {
-  let loggedIn = store.getters.loggedIn
+// router.beforeEach((to, from, next) => {
+//   let loggedIn = store.getters.loggedIn
 
-  const { authorize } = to.meta
+//   const { authorize } = to.meta
 
-  if(authorize) {
-    if(!loggedIn) next({ name: 'login' })
-    else next()
-  }
-
-  next()
-
-})
+//   if(authorize) {
+//     if(!loggedIn) next({ name: 'login' , query: { redirect: to.fullPath }})
+//     else next()
+//   } else {
+//     next()
+//   }
+// })
 
 
 

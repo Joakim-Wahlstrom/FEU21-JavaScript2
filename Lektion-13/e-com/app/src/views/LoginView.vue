@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     ...mapActions(['login']),
-    handleSubmit() {
+    async handleSubmit() {
       if(this.email.trim() === '' || this.password.trim() === '') {
         return
       }
@@ -43,9 +43,16 @@ export default {
         email: this.email,
         password: this.password
       }
+      // await this.login(user)
+      // if(this.$route.query.redirect) {
+        //   this.$router.push(this.$route.query.redirect)
+      // } else {
+        //   this.$router.push({ name: 'home' })
+      // }
 
-      this.login(user)
-      this.$router.push('/')
+
+        let route = this.$route.query.redirect
+        this.login({user, route})
     }
   }
 
