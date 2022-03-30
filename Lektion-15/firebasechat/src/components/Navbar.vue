@@ -1,16 +1,27 @@
 <template>
   <nav class="navbar">
     <div>
-      <p>displayName</p>
-      <p class="email">Currently logged in as user@mail.com</p>
+      <p>{{user.displayName}}</p>
+      <p class="email">Currently logged in as {{ user.email }}</p>
     </div>
-    <button class="btn btn-primary">Logout</button>
+    <button class="btn btn-primary" @click="handleClick">Logout</button>
   </nav>
 </template>
 
 <script>
+import getUser from '../composables/getUser'
+import useLogout from '../composables/useLogout'
 export default {
+  setup() {
+    const { user } = getUser()
+    const { logout } = useLogout()
 
+    const handleClick = async () => {
+      await logout()
+    }
+
+    return { user, handleClick }
+  }
 }
 </script>
 
