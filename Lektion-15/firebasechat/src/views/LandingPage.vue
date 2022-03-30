@@ -37,7 +37,7 @@ export default {
     max-width: 400px;
     margin: 2rem auto;
   }
-  .welcome input {
+  .form-control {
     width: 100%;
     display: block;
     padding: .5rem;
@@ -45,7 +45,7 @@ export default {
     border: 1px solid var(--clr-border);
     margin-bottom: 1rem;
   }
-  .welcome input:focus {
+  .form-control:focus {
     outline: 1px solid #5e5e5e;
   }
   .welcome button {
