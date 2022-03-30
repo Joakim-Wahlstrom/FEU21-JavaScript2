@@ -1,9 +1,9 @@
 <template>
-  <div class="chat-window">
-    <div class="error">error message</div>
+  <div class="chat-window" ref="messages">
+    <div class="error" v-if="error">{{ error }}</div>
     <div class="messages">
 
-      <SingleMessage />
+      <SingleMessage v-for="doc in formattedDocs" :key="doc.id" :user="user" :doc="doc" />
 
     </div>
   </div>
@@ -11,10 +11,35 @@
 
 <script>
 import SingleMessage from "./SingleMessage.vue"
-
+import getCollection from '../composables/getCollection'
+import getUser from '../composables/getUser'
+import { formatDistanceToNow } from 'date-fns'
+import { computed, onUpdated, ref } from 'vue'
 export default {
   components: { SingleMessage },
+  setup() {
+    const { error, documents } = getCollection('messages')
+    const { user } = getUser()
 
+    const formattedDocs = computed(() => {
+      if(documents.value.length) {
+        return documents.value.map(doc => {
+          let time = formatDistanceToNow(doc.createdAt.toDate())
+          return { ...doc, createdAt: time }
+        })
+      }
+      else return []
+    })
+
+
+    const messages = ref(null)
+
+    onUpdated(() => {
+      messages.value.scrollTop = messages.value.scrollHeight
+    })
+
+    return { error, user, documents, formattedDocs, messages }
+  }
 }
 </script>
 

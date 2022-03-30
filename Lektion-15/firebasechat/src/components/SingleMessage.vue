@@ -1,16 +1,16 @@
 <template>
-  <div class="single">
-    <span class="created-at">2 min</span>
+  <div class="single" :class="user.uid === doc.uid ? 'own' : ''">
+    <span class="created-at">{{ doc.createdAt }}</span>
     <div class="single-message">
-      <span class="name">Joakim</span>
-      <span class="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, aperiam!</span>
+      <span class="name">{{ doc.name }}</span>
+      <span class="message">{{ doc.message }}</span>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-
+  props: ['user', 'doc']
 }
 </script>
 
